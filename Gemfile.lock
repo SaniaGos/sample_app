@@ -37,6 +37,8 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (6.0.4)
+    bootstrap-sass (3.2.0.4)
+      sass (~> 3.2)
     builder (3.2.4)
     byebug (3.4.0)
       columnize (~> 0.8)
@@ -88,7 +90,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    nokogiri (1.12.3)
+    nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pg (0.21.0)
@@ -173,6 +175,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.2.0.0)
   byebug (= 3.4.0)
   coffee-rails (~> 4.1.0)
   guard-minitest
