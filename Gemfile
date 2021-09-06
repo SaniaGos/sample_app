@@ -12,10 +12,13 @@ gem 'turbolinks', '2.3.0'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'web-console', group: :development
+gem 'byebug-color-printer', '~> 0.1.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.9'
-  gem 'byebug', '3.4.0'
+  gem 'byebug', '~> 4.0'
+  gem 'pry-byebug'
+  gem 'pry', '~> 0.13.1'
   gem 'spring', '1.1.3'
 end
 
