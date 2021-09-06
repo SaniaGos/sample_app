@@ -92,6 +92,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    nio4r (2.5.8)
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
@@ -102,6 +103,8 @@ GEM
     pry-byebug (3.1.0)
       byebug (~> 4.0)
       pry (~> 0.10)
+    puma (5.4.0)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (1.6.13)
     rack-test (0.6.3)
@@ -195,6 +198,7 @@ DEPENDENCIES
   pg (= 0.21.0)
   pry (~> 0.13.1)
   pry-byebug
+  puma (= 5.4.0)
   rails (= 4.2.11.3)
   rails_12factor (= 0.0.2)
   sass-rails (~> 5.0)
