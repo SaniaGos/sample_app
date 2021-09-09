@@ -7,6 +7,10 @@ class UserTest < ActiveSupport::TestCase
     # debugger
   end
 
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?("")
+  end
+
   test "should be valid" do
     # debugger
     assert @user.valid?
