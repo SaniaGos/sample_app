@@ -1,11 +1,15 @@
-<% provide(:title, @user.name) %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <h1>
-          <%= gravatar_for(@user) %>
-          <%= @user.name %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <% if @user %>
+        <% provide(:title, @user.name)%>
+        <h1 class = "users">
+          <%= render(@user) %>
         </h1>
-      </section>
-    </aside>
-  </div>
+      <% else %>
+        <h1>User not found</h1>
+        <% provide(:title, "Erorr 404")%>
+      <%end%>
+    </section>
+  </aside>
+</div>

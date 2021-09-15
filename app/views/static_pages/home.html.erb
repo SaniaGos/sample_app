@@ -5,6 +5,12 @@
     <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
     sample application.
   </h2>
-  <%= link_to "Sign up now!" , signup_path, class: "btn btn-lg btn-primary" %>
+
+  <% if logged_in? %>
+    <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to "Sign up now!" , login_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+
 </div>
 <%= link_to image_tag("rails.png", width: "10%", alt: "Rails logo" ), 'http://rubyonrails.org/' %>

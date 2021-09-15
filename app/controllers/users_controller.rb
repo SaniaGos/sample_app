@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update, :index, :show]
+  before_action :correct_user, only: [:edit, :update]
+
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    unless @user = User.find_by(id: params[:id])
-      render(text: "<h1>User not found</h1>", status: 404)
-    end
+    @user = User.find_by(id: params[:id])
   end
 
   def new
@@ -18,21 +19,21 @@ class UsersController < ApplicationController
     if @user.save # Обработать успешное сохранение.
       log_in @user
       flash[:success] = "Welcome to the Sample App!"
-      redirect_to(@user)  # те саме redirect_touser_url(@user)
+      redirect_to(@user)  # те саме redirect_to user_url(@user)
     else
       render "new"
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Профіль оновлено"
-      redirect_to @user
+      flash[:success] = "Профіль обновлено"
+      redirect_to(@user)
     else
       render "edit"
     end
@@ -43,5 +44,21 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
+  end
+
+  # Подтверждает вход пользователя.
+  def logged_in_user
+    # debugger
+    unless logged_in?
+      store_location               # зберігаєм запрошувальну сторінку
+      flash[:danger] = "Будь ласка увійдіть"
+      redirect_to(login_url)
+    end
+  end
+
+  # Подтверждает права пользователя.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
   end
 end
