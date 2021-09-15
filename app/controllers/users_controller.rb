@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   WillPaginate.per_page = 10
 
   def index
-    @users = User.paginate(page: params[:page])
+    # debugger
+    @users = User.order('admin DESC').paginate(page: params[:page])
   end
 
   def show

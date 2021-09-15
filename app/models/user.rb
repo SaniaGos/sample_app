@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-  before_save { self.email.downcase! }
+  before_save { self.email.downcase! if self.email} # when was a nil, an error
   # debugger
   validates(:name, presence: true, length: { minimum: 3, maximum: 50 })
   # debugger
