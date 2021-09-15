@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :index, :show]
+  before_action :logged_in_user, only: [:edit, :update, :index, :show, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
 
   WillPaginate.per_page = 10
 
   def index
     # debugger
-    @users = User.order('admin DESC').paginate(page: params[:page])
+    @users = User.order("admin DESC").paginate(page: params[:page])
   end
 
   def show
@@ -42,7 +43,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+
   private
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
