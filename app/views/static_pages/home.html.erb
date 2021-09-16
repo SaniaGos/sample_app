@@ -9,7 +9,7 @@
   <% if logged_in? %>
     <%= link_to "Log out", logout_path, method: "delete", class: "btn btn-lg btn-primary" %>
   <% else %>
-    <%= link_to "Sign up now!" , login_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Sign up now!" , signup_path, class: "btn btn-lg btn-primary" %>
   <% end %>
 
 </div>

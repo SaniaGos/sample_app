@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    # debugger
     log_out if logged_in?
     redirect_to root_url
   end

@@ -7,7 +7,7 @@ module SessionsHelper
   # Запоминает пользователя в постоянном сеансе.
   def remember(user)
     user.remember
-    cookies.permanent.signed[:user_id] = user.id
+    cookies.permanent.signed[:user_id] = user.id # method "permanent" use cookies 20 years
     cookies.permanent[:remember_token] = user.remember_token
     # debugger
   end
@@ -52,6 +52,7 @@ module SessionsHelper
 
   # Перенаправить по сохраненному адресу или на страницу по умолчанию.
   def redirect_back_or(default)
+    # debugger
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
   end
