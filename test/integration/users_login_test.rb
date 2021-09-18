@@ -28,8 +28,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "login with remembering" do
     log_in_as(@user, remember_me: "1")
+    @user.reload
     # byebug
-    assert_equal assigns(:user).remember_token, cookies["remember_token"]
+    assert BCrypt::Password.new(@user.remember_digest).is_password?(cookies["remember_token"])
   end
 
   test "login without remembering" do
