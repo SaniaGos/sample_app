@@ -65,7 +65,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = "blooming-meadow-01338.herokuapp.com"
+  host = "https://blooming-meadow-01338.herokuapp.com/users"
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.sendgrid.net",
