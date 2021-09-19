@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  root "static_pages#home"                # root_path
-  get "help"    => "static_pages#help"       # help_path
-  get "about"   => "static_pages#about"
-  get "contact" => "static_pages#contact"
-  get "signup"  => "users#new"
+  # get "password_resets/new"
+  # get "password_resets/edit"
 
-  resources :users
-
-  get    "login"  => "sessions#new"
-  post   "login"  => "sessions#create"
+  root               "static_pages#home"       # root_path
+  get "help"      => "static_pages#help"       # help_path
+  get "about"     => "static_pages#about"
+  get "contact"   => "static_pages#contact"
+  get "signup"    => "users#new"
+  get "login"     => "sessions#new"
+  post "login"    => "sessions#create"
   delete "logout" => "sessions#destroy"
-
+  
+  resources :users
   resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end
