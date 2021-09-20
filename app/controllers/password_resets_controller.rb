@@ -7,6 +7,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
+    # debugger
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
       @user.create_reset_digest
@@ -47,6 +48,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def get_user
+    # debugger
     @user = User.find_by(email: params[:email])
   end
 

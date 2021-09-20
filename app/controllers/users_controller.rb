@@ -7,11 +7,12 @@ class UsersController < ApplicationController
 
   def index
     # debugger
-    @users = User.order("admin DESC").paginate(page: params[:page])
+    @users = User.where(activated: true).order("admin DESC").paginate(page: params[:page])
   end
 
   def show
     @user = User.find_by(id: params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
