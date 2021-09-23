@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page]).per_page(15)
     redirect_to root_url and return unless @user.activated?
   end
 
@@ -62,19 +63,15 @@ class UsersController < ApplicationController
                                  :password_confirmation)
   end
 
-  # Подтверждает вход пользователя.
-  def logged_in_user
-    # debugger
-    unless logged_in?
-      store_location               # зберігаєм запрошувальну сторінку
-      flash[:danger] = "Будь ласка увійдіть"
-      redirect_to(login_url)
-    end
-  end
-
   # Подтверждает права пользователя.
   def correct_user
+    # debugger
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
   end
+
+  # def correct_user_or_admin
+  #   @user = User.find(params[:id])
+  #   redirect_to(root_url) unless current_user?(@user) || @user.admin?
+  # end
 end
