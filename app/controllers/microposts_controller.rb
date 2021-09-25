@@ -9,7 +9,8 @@ class MicropostsController < ApplicationController
       redirect_to root_url
     else
       # debugger
-      @feed_items = current_user.reload.microposts.paginate(page: params[:page]).per_page(15)
+      @feed_items = current_user.reload.feed.paginate(page: params[:page]).per_page(15)
+      # @feed_items = current_user.reload.microposts.paginate(page: params[:page]).per_page(15)
       render "static_pages/home"
     end
   end

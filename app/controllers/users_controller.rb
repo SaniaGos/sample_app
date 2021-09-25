@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
-  WillPaginate.per_page = 10
+  # WillPaginate.per_page = 10
 
   def index
     # debugger
